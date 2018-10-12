@@ -1,0 +1,22 @@
+{
+  "name": "offchain",
+  "version": "1.0.0",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "ganache-cli": "^6.1.8",
+    "truffle-hdwallet-provider": "0.0.6",
+    "vue": "^2.5.17",
+    "web3": "^0.20.7"
+  },
+  "devDependencies": {},
+  "description": ""
+}
