@@ -10,7 +10,7 @@ contract Contract1 {
         require(msg.sender == owner, "Only the owner can kill this contract");
         selfdestruct(owner);
     }
-    function verifyAddressFromTypedSign(bytes _sign, string _mesg, uint _num, address _address) public view returns (bool) {
+    function verifyAddressFromTypedSign(bytes _sign, string _mesg, uint _num, address _address) public pure returns (bool) {
         // need to hardcode exactly how the types in the signTypedData are
         bytes32 typeHash = keccak256(abi.encodePacked('string Message', 'uint256 num'));
         bytes32 valueHash = keccak256(abi.encodePacked(_mesg, _num));

@@ -27,7 +27,7 @@ export default {
 		},
         async initContract () {
             if( !this.isInitialized ) {
-                var address = '0xcf1fe95ac2a03263b0ff2676bc9c0a8e9d563ba6' // use the latest contract address
+                var address = '0x824ae48ef2c6271b91789218a032f17d1c1dd36d' // use the latest contract address
                 var Web3 = require('web3')
                 web3 = new Web3(web3.currentProvider);
                 this.myAddress = web3.eth.accounts[0]
