@@ -20,6 +20,18 @@ const abi = [
     "type": "constructor"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "AddressVerifiedEvent",
+    "type": "event"
+  },
+  {
     "constant": false,
     "inputs": [],
     "name": "kill",
@@ -57,6 +69,37 @@ const abi = [
     ],
     "payable": false,
     "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_sign",
+        "type": "bytes"
+      },
+      {
+        "name": "_mesg",
+        "type": "string"
+      },
+      {
+        "name": "_num",
+        "type": "uint256"
+      },
+      {
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "verifyAddressFromTypedSignWithEvent",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {

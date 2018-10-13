@@ -2,6 +2,7 @@ pragma solidity 0.4.24;
 
 contract Contract1 {
     address public owner;
+    event AddressVerifiedEvent(address indexed _address);
 
     constructor() public {
         owner = msg.sender;
@@ -15,6 +16,15 @@ contract Contract1 {
         bytes32 typeHash = keccak256(abi.encodePacked('string Message', 'uint256 num'));
         bytes32 valueHash = keccak256(abi.encodePacked(_mesg, _num));
         return recover(keccak256(abi.encodePacked(typeHash, valueHash)), _sign) == _address;
+    }
+    function verifyAddressFromTypedSignWithEvent(bytes _sign, string _mesg, uint _num, address _address) public returns (bool) {
+        // need to hardcode exactly how the types in the signTypedData are
+        bytes32 typeHash = keccak256(abi.encodePacked('string Message', 'uint256 num'));
+        bytes32 valueHash = keccak256(abi.encodePacked(_mesg, _num));
+        bool verified = (recover(keccak256(abi.encodePacked(typeHash, valueHash)), _sign) == _address);
+        if(verified)
+            emit AddressVerifiedEvent(_address);
+        return verified;
     }
     function verifyAddressFromWeb3Sign(bytes sign, bytes32 signedMessage, address _address) public pure returns(bool) {
         return recover(signedMessage, sign) == _address; // works with web3.eth.sign

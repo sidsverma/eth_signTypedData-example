@@ -27,12 +27,20 @@ export default {
 		},
         async initContract () {
             if( !this.isInitialized ) {
-                var address = '0x824ae48ef2c6271b91789218a032f17d1c1dd36d' // use the latest contract address
+                var address = '0xbdcd0f0d30ad65f5e09f56a01b0f5c42776a767a'
+                // this is the kovan address. Use the latest contract address in the network where you deploy your contract.
                 var Web3 = require('web3')
                 web3 = new Web3(web3.currentProvider);
                 this.myAddress = web3.eth.accounts[0]
                 var MyContract = web3.eth.contract(abi)
                 this.myContract = MyContract.at(address)
+                let addressVerifiedEvent = this.myContract.AddressVerifiedEvent({toBlock: 'latest'})
+                addressVerifiedEvent.watch((error, result)=>{
+                    if (!error) {
+                        console.log(result)
+                    } else
+                        console.log("error")
+                })
                 this.isInitialized = true
             }
 		},
@@ -41,15 +49,15 @@ export default {
             var msg1 = "heeeyyyy!"
             var num1 = 46
             var msgParams = [
-            {
-                type: 'string',
-                name: 'Message',
-                value: msg1
-            },
-            {  
-                type: 'uint256', 
-                name:'num', 
-                value: num1
+                {
+                    type: 'string',
+                    name: 'Message',
+                    value: msg1
+                },
+                {  
+                    type: 'uint256',
+                    name:'num',
+                    value: num1
                 }
             ]
             var from = this.myAddress;
@@ -70,6 +78,11 @@ export default {
                 console.log('EthSignTyped SIGNED:' + JSON.stringify(sign))
                 instance.myContract.verifyAddressFromTypedSign(sign, msg1, num1, from, function(err1, res1) {
                     console.log("res1 from verifyAddressFromTypedSign: " + res1)
+                    // if the flow reaches here, do the task that needs to be done with the params passed.
+                })
+                instance.myContract.verifyAddressFromTypedSignWithEvent.sendTransaction(sign, msg1, num1, from, {from:from}, function(err1, res1) {
+                    console.log("res1 from verifyAddressFromTypedSignWithEvent: " + res1)
+                    // res1 should return the transaction hash and you will receive an event(check in console logs) which will contain your metamask address.
                     // if the flow reaches here, do the task that needs to be done with the params passed.
                 })
             })
