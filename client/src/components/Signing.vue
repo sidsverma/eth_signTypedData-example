@@ -27,7 +27,7 @@ export default {
 		},
         async initContract () {
             if( !this.isInitialized ) {
-                var address = '0xfcdb7629b6680b424433f3cdbd7e046196b54a77'
+                var address = '0xbdcd0f0d30ad65f5e09f56a01b0f5c42776a767a'
                 // this is the kovan address. Use the latest contract address in the network where you deploy your contract.
                 this.myAddress = web3.eth.accounts[0]
                 var MyContract = web3.eth.contract(abi)
