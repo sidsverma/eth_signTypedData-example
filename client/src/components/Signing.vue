@@ -29,8 +29,6 @@ export default {
             if( !this.isInitialized ) {
                 var address = '0xbdcd0f0d30ad65f5e09f56a01b0f5c42776a767a'
                 // this is the kovan address. Use the latest contract address in the network where you deploy your contract.
-                var Web3 = require('web3')
-                web3 = new Web3(web3.currentProvider);
                 this.myAddress = web3.eth.accounts[0]
                 var MyContract = web3.eth.contract(abi)
                 this.myContract = MyContract.at(address)
@@ -54,7 +52,7 @@ export default {
                     name: 'Message',
                     value: msg1
                 },
-                {  
+                {
                     type: 'uint256',
                     name:'num',
                     value: num1

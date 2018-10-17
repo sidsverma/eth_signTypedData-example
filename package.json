@@ -14,8 +14,7 @@
     "dotenv": "^6.0.0",
     "ganache-cli": "^6.1.8",
     "truffle-hdwallet-provider": "0.0.6",
-    "vue": "^2.5.17",
-    "web3": "^0.20.7"
+    "vue": "^2.5.17"
   },
   "devDependencies": {},
   "description": ""

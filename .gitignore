@@ -1,2 +1,7 @@
 node_modules/
 build/
+**/package-lock.json
+**/yarn-error.log
+**/yarn.lock
+**/ganache-output.log
+.idea
